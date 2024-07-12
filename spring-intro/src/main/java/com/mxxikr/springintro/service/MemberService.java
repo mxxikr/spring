@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 // @Service 어노테이션을 사용하면 스프링 컨테이너에 서비스로 등록
-@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -18,8 +17,8 @@ public class MemberService {
      * 생성자를 통한 의존성 주입
      * MemoryMemberRepository 객체를 주입
      */
-    @Autowired
-    public MemberService(MemoryMemberRepository memberRepository) {
+    // @Autowired
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
