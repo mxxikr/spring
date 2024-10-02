@@ -4,8 +4,11 @@ import com.mxxikr.springintro.domain.Member;
 import com.mxxikr.springintro.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // @Controller 어노테이션을 사용하면 스프링 컨테이너에 컨트롤러로 등록
 @Controller
@@ -31,7 +34,7 @@ public class MemberController {
      * @param form
      * @return
      */
-    @PostMapping("/members/new")
+    @PostMapping("/members/new") // 데이터 등록 시 PostMapping 사용
     public String create(MemberForm form) {
     Member member = new Member();
     member.setName(form.getName()); // 회원 이름 설정
@@ -39,5 +42,18 @@ public class MemberController {
     memberService.join(member);
 
     return "redirect:/"; // 홈 화면으로 리다이렉트
+    }
+
+    /**
+     * 회원 목록 조회
+     * 회원 목록을 리스트 형태로 전체 조회해서 model에 담아 뷰로 전달
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList"; // 회원 목록 화면으로 이동
     }
 }
