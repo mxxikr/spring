@@ -1,6 +1,7 @@
 package com.mxxikr.springintro;
 
 import com.mxxikr.springintro.repository.JdbcMemberRepository;
+import com.mxxikr.springintro.repository.JdbcTemplateMemberRepository;
 import com.mxxikr.springintro.repository.MemberRepository;
 import com.mxxikr.springintro.repository.MemoryMemberRepository;
 import com.mxxikr.springintro.service.MemberService;
@@ -26,6 +27,8 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource); // JdbcMemberRepository로 변경
+//        return new JdbcMemberRepository(dataSource); // JdbcMemberRepository로 변경
+        return new JdbcTemplateMemberRepository(dataSource); // JdbcTemplateMemberRepository로 변경
+
     }
 }
