@@ -1,8 +1,9 @@
-package com.mxxikr.springintro.service;
+package com.mxxikr.springintro;
 
 import com.mxxikr.springintro.repository.JdbcMemberRepository;
 import com.mxxikr.springintro.repository.MemberRepository;
 import com.mxxikr.springintro.repository.MemoryMemberRepository;
+import com.mxxikr.springintro.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
