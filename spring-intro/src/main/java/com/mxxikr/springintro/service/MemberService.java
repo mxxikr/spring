@@ -6,6 +6,7 @@ import com.mxxikr.springintro.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,10 +26,14 @@ public class MemberService {
     /**
      * 회원 가입
      */
-    public Long join(Member member) {
-        validateDuplicateMember(member); // 중복 회원 검증
-        memberRepository.save(member); // 회원 저장
-        return member.getId(); // 회원 id 반환
+    public Long join(Member member) throws SQLException {
+        try {
+            validateDuplicateMember(member); // 중복 회원 검증
+            memberRepository.save(member); // 회원 저장
+            return member.getId(); // 회원 id 반환
+        } catch (SQLException e) {
+            throw new SQLException("회원 가입 중 오류가 발생했습니다.");
+        }
     }
 
     /**
