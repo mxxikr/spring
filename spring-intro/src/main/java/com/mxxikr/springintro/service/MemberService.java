@@ -29,12 +29,19 @@ public class MemberService {
      * 회원 가입
      */
     public Long join(Member member) throws SQLException {
+
+        long start = System.currentTimeMillis(); // 현재 시간을 밀리초로 반환
+
         try {
             validateDuplicateMember(member); // 중복 회원 검증
             memberRepository.save(member); // 회원 저장
             return member.getId(); // 회원 id 반환
         } catch (SQLException e) {
             throw new SQLException("회원 가입 중 오류가 발생했습니다.");
+        } finally {
+            long finish = System.currentTimeMillis(); // 현재 시간을 밀리초로 반환
+            long timeMs = finish - start; // 끝난 시간 - 시작 시간 = 걸린 시간
+            System.out.println("join = " + timeMs + "ms");
         }
     }
 
@@ -57,7 +64,14 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis(); // 현재 시간을 밀리초로 반환
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis(); // 현재 시간을 밀리초로 반환
+            long timeMs = finish - start; // 끝난 시간 - 시작 시간 = 걸린 시간
+            System.out.println("findMembers = " + timeMs + "ms");
+        }
     }
 
     /**
