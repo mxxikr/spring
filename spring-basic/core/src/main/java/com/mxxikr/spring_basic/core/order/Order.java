@@ -1,7 +1,7 @@
 package com.mxxikr.spring_basic.core.order;
 
 /**
- * 주문 도메인
+ * 주문 엔티티
  */
 public class Order {
 

@@ -6,7 +6,7 @@ import com.mxxikr.spring_basic.core.member.Member;
 import com.mxxikr.spring_basic.core.member.MemberRepository;
 import com.mxxikr.spring_basic.core.member.MemoryMemberRepository;
 
-// 주문 생성
+// 주문 서비스 구현체
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository(); // 회원 찾을 때 필요
